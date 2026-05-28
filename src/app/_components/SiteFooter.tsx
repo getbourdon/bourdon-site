@@ -22,7 +22,7 @@ export function SiteFooter() {
         . Source-available under Business Source License 1.1 — auto-converts to Apache 2.0 after 4
         years. Free for solo developers, research, and non-competing commercial use. Commercial
         licensing: <a href="mailto:licensing@bourdon.ai">licensing@bourdon.ai</a>.{" "}
-        <a href="/privacy">Privacy</a>.
+        <a href="/privacy">Privacy</a>. <a href="/legacy/">Original 2026 landing</a>.
       </p>
     </footer>
   );

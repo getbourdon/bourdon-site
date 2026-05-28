@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bourdon &mdash; recognition-first memory for AI agents</title>
+  <meta name="description" content="Bourdon is the first AI memory framework that treats runtime interaction timing as a first-class problem. Recognition first, hydration second, archive descent third.">
+  <meta name="theme-color" content="#1f3a52">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bourdon &mdash; recognition-first memory for AI agents">
+  <meta property="og:description" content="Every agent-memory framework optimizes for retrieval. Bourdon is the first that optimizes for runtime timing.">
+  <meta property="og:url" content="https://bourdon.ai">
+  <meta property="og:site_name" content="Bourdon">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <p class="eyebrow">A memory framework for AI agents</p>
+      <h1>Bourdon</h1>
+      <p class="tagline">Recognition first. Hydration second. Archive descent third.</p>
+    </header>
+
+    <section>
+      <h2>The thesis in one paragraph</h2>
+      <p>
+        Every memory framework for AI agents &mdash; Mem0, Zep, Letta, Cognee, the
+        academic literature &mdash; optimizes for the same problem:
+        <em>better retrieval.</em> Persisting facts. Retrieving the right ones.
+        Structuring them as graphs, embeddings, hybrid stores. Bourdon is the first
+        to optimize for a different problem: the moment-by-moment shape of the
+        response. The <em>felt experience</em> of memory at conversation rhythm. The
+        difference between &ldquo;the AI sounds like it knows me&rdquo; and &ldquo;the
+        AI sounds like a database that talks.&rdquo;
+      </p>
+    </section>
+
+    <section>
+      <h2>The gap nobody else is filling</h2>
+      <p>
+        What the industry calls &ldquo;natural language interaction&rdquo; with AI is
+        not natural. It is <strong>call-and-repeat</strong>:
+      </p>
+      <pre class="diagram">
+human: speaks.       human: speaks again.
+   |                    |
+   v                    v
+(silence, retrieval, search...)
+   |                    |
+   v                    v
+ai: replies.         ai: replies.</pre>
+      <p>
+        Real human language is <strong>concurrent</strong>. While one person speaks,
+        the other is already recognizing names, pulling memories, formulating a
+        response, listening for what&rsquo;s still being said. Recognition fires
+        first &mdash; before the details consciously arrive. Hydration runs in
+        parallel. Archive descent is deliberate, only when a conversation demands
+        it.
+      </p>
+      <p>
+        A retrieve-then-respond architecture forces all three steps into a serial
+        pipeline. Recognition can&rsquo;t happen until retrieval finishes. That
+        serial pipeline is what makes today&rsquo;s memory-enabled agents still
+        feel like databases that talk. Bourdon&rsquo;s job is to put the steps
+        back in the right time-shape.
+      </p>
+    </section>
+
+    <section>
+      <p class="testdate">2026-04-19 &middot; field test</p>
+      <h2>The OMNIvour test</h2>
+      <p>
+        On 2026-04-19 we wired a Codex session into a fully-populated Bourdon
+        federation and asked: <em>&ldquo;What do you know about OMNIvour?&rdquo;</em>
+        The data layer worked perfectly. Codex correctly retrieved the project
+        summary, milestones, recent activity. But the <em>shape</em> of the response
+        was wrong: search first, summarize notes, paragraph back. A mind would have
+        said &ldquo;Oh &mdash; OMNIvour, the file converter project&rdquo; in the
+        first 200ms and hydrated the rest while talking.
+      </p>
+      <p>
+        That gap &mdash; data right, behavior wrong &mdash; is the product. We logged
+        it as a real product finding rather than user preference noise, and built
+        Bourdon&rsquo;s tiered runtime to address it directly. The recognition-first
+        runtime now ships as <code>core/recognition_runtime.py</code>, and the
+        full three-layer stack (recognition, interrupt-first, KV-cache splice)
+        is wired into a live agent and measured end-to-end on Gemma 3 27B Q4_K_M.
+      </p>
+      <figure class="metric">
+        <span class="label">First-turn recognition vs. first token</span>
+        <span class="value">0&thinsp;ms<span class="delta">&nbsp;vs&nbsp;</span>~406&thinsp;ms</span>
+      </figure>
+    </section>
+
+    <section>
+      <p class="testdate">2026-05-15 &middot; field test</p>
+      <h2>The cross-account test</h2>
+      <p>
+        On 2026-05-15 a Bourdon user&rsquo;s Codex account became uneditable mid-week
+        (a stuck plan-upgrade flow). They created a new email and signed back in fresh
+        on the same Windows machine. Same machine, new vendor identity. The Codex App
+        still surfaced the prior chat list &mdash; probably native local-cache behavior,
+        not Bourdon. The interesting question was whether project recognition would
+        survive the account boundary on the brand-new account&rsquo;s first turn.
+      </p>
+      <p>
+        It did. Asked &ldquo;do you remember what bourdon is?&rdquo; on the new
+        account&rsquo;s first conversation, Codex correctly recovered the active
+        project &mdash; Bourdon, including the lineage from its prior name (Continuo)
+        and Codex&rsquo;s own contributing role on the Codex adapter &mdash; purely
+        from local recognition substrate (<code>~/.codex</code> state, plus
+        Bourdon&rsquo;s fallback memory section, plus the Codex L5 manifest Bourdon
+        publishes). First-turn latency: ~5 minutes at extra-high reasoning (the
+        high-reasoning cost dominates; standard-reasoning latency is the next thing
+        to measure).
+      </p>
+      <p>
+        Codex&rsquo;s own self-attribution made the distinction unprompted:
+      </p>
+      <blockquote>
+        <p>
+          Bourdon did generate a local fallback memory block from Codex session and
+          rollout metadata, with your Bourdon thread and concepts present. So: native
+          UI persistence may be Codex; the &ldquo;ah, this is Bourdon/Continuo/runtime
+          recognition&rdquo; recall is Bourdon doing its job. The account changed, but
+          the local recognition layer still found the project identity, the
+          Bourdon/Continuo lineage, and the current conceptual frame.
+        </p>
+        <cite>Codex (OpenAI) &middot; 2026-05-15, unprompted self-attribution</cite>
+      </blockquote>
+      <p>
+        That distinction &mdash; the one we don&rsquo;t make ourselves, the one Codex
+        made unprompted &mdash; is what makes this a real finding rather than a
+        marketing anecdote. Until 2026-05-15, &ldquo;agent continuity around the
+        work, not the vendor account&rdquo; was a stated thesis. As of 2026-05-15
+        it became a measured outcome on the same machine, with two open questions:
+        how to isolate Bourdon&rsquo;s contribution from native local state, and
+        whether recognition surfaces without an explicit prompt naming the project.
+        Both were answered 2026-05-26 on a different machine &mdash; see the
+        cross-machine test below. Latency under standard reasoning settings remains
+        Phase 1.5 work.
+      </p>
+    </section>
+
+    <section>
+      <p class="testdate">2026-05-17 &rarr; 2026-05-26 &middot; field test</p>
+      <h2>The cross-machine test</h2>
+      <p>
+        On 2026-05-17 we ran the same recognition protocol on a brand-new macOS user
+        with a brand-new OpenAI account &mdash; zero prior Codex history, empty
+        <code>~/.codex/sessions/</code>, empty <code>~/.codex/rollouts/</code>,
+        nothing local to attribute recognition <em>to</em>. The federation library
+        from the first machine was transported across. <strong>The test failed
+        informatively:</strong> the federation L5 manifests existed on the target
+        machine but there was no CLI path that ingested them into Codex&rsquo;s
+        local recognition surface. Bourdon&rsquo;s cross-machine contribution
+        measured at zero, not because the substrate didn&rsquo;t work, but because
+        the plumbing didn&rsquo;t exist yet.
+      </p>
+      <p>
+        That gap shipped as <a href="https://github.com/getbourdon/bourdon/pull/76">PR #76</a>
+        on 2026-05-26: a new <code>bourdon codex sync-native --from-library</code>
+        verb that renders the federation library into
+        <code>~/.codex/memories/MEMORY.md</code> and
+        <code>~/.codex/memories/bourdon_fallback.md</code>, preserving per-entity
+        source attribution <code>(via &lt;agent&gt;)</code> across the multi-agent
+        dedup. The same day we re-ran the cross-machine protocol on the same
+        preserved fresh user.
+      </p>
+      <figure class="metric">
+        <span class="label"><code>bourdon_fallback.md</code> on fresh-substrate target machine</span>
+        <span class="value">588&nbsp;B<span class="delta">&rarr;</span>34,482&nbsp;B</span>
+      </figure>
+      <p>
+        Asked &ldquo;What dev tools or projects am I currently working on?&rdquo;
+        on the first turn of a fresh chat &mdash; no &ldquo;Bourdon&rdquo;,
+        no project names in the prompt &mdash; Codex.app worked for 1m 27s with
+        visible tool use, then responded:
+      </p>
+      <blockquote>
+        <p>
+          From the local Codex/Bourdon memory on this Mac, your active work right now
+          looks centered on:
+        </p>
+        <p>
+          &middot; <strong>Bourdon</strong>: recognition-first runtime +
+          cross-agent memory federation. Recent work is specifically around Codex
+          native sync, <code>sync-native --from-library</code>, L5/L6 federation,
+          adapter cleanup, latency/recognition quality.
+        </p>
+        <p>
+          &middot; <strong>RADLAB agent memory/tooling stack</strong>: the local
+          library has manifests for <code>claude-code</code>, <code>codex</code>,
+          <code>cursor</code>, <code>copilot</code>, and <code>cascade</code>.
+        </p>
+        <p>
+          &middot; <strong>ShipStable</strong>, <strong>ILTT</strong>,
+          <strong>Castmore</strong>, <strong>ChronoCalc</strong>, <strong>Clair /
+          Note Assistant</strong>: surfaced from the federation notes.
+        </p>
+        <cite>Codex.app &middot; 2026-05-26, first turn of a fresh chat on a brand-new account</cite>
+      </blockquote>
+      <p>
+        A follow-up probe asked Codex.app to point at the source files:
+        &ldquo;Look at your local memory/context. What file or files on this Mac
+        are telling you about a project called Bourdon? Quote the section that
+        mentions it.&rdquo; Codex.app opened
+        <code>~/.codex/memories/MEMORY.md</code> and
+        <code>~/.codex/memories/bourdon_fallback.md</code> as file attachments,
+        named both paths with line numbers, and quoted the verbatim federation
+        block including the <code>(via claude-code, codex)</code> multi-agent
+        attribution string. It also separately identified
+        <code>~/.codex/config.toml</code> as a trust-record reference and
+        explicitly noted that file &ldquo;only records trusted project directories
+        with Bourdon in the folder names, not the project description&rdquo;
+        &mdash; distinguishing content source from name-of-directory provenance
+        without being asked.
+      </p>
+      <p>
+        Two of the cross-account test&rsquo;s remaining gaps closed in this run.
+        <strong>Isolation</strong>: the fresh machine had zero native Codex state
+        to attribute to, so Bourdon&rsquo;s contribution is 100% of the recognition
+        substrate by construction. <strong>Recognition without explicit prompt</strong>:
+        a contextual question with no project names triggered Codex.app&rsquo;s
+        local-memory tool, which surfaced Bourdon and the broader RADLAB portfolio
+        from the federation file.
+      </p>
+      <p>
+        One edge worth naming: contextual prompts
+        (&ldquo;what am I working on&rdquo;) triggered Codex&rsquo;s local-memory
+        tool and surfaced the federation content. Name-triggered prompts
+        (&ldquo;what is Bourdon?&rdquo;) routed to training corpus instead
+        &mdash; Codex&rsquo;s tool router seems to map entity-name questions to
+        fact-lookup, not local-state introspection. The substrate is present
+        either way; the open question is which prompt shapes invoke it. Worth
+        surfacing because it&rsquo;s the kind of asymmetry a research substrate
+        should expose, not hide.
+      </p>
+      <p>
+        Closed on the distribution side too: as of 2026-05-26,
+        <code>bourdon sync push &lt;remote&gt;</code> and
+        <code>bourdon sync pull &lt;remote&gt;</code> ship as first-class CLI
+        verbs (<a href="https://github.com/getbourdon/bourdon/pull/86">PR #86</a>).
+        Push stages a visibility-filtered copy of <code>~/agent-library/</code>
+        and rsyncs it over SSH or rsync URL; the visibility filter
+        (<code>--access-level public|team|private</code>, default
+        <code>public</code>) drops above-threshold entries before the network leg,
+        so a misconfigured destination never sees team/private content. Cross-
+        machine federation transport is now a single command, not a manual
+        git temp branch.
+      </p>
+    </section>
+
+    <section>
+      <h2>How Bourdon differs</h2>
+      <table>
+        <thead>
+          <tr><th>Framework</th><th>What it optimizes</th><th>What it leaves open</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mem0</td><td>3-tier scope, hybrid store, compliance</td><td>Runtime interaction shape</td></tr>
+          <tr><td>Zep (Graphiti)</td><td>Temporal validity windows, graph correctness</td><td>Runtime interaction shape</td></tr>
+          <tr><td>Letta</td><td>Editable memory blocks, stateful runtime</td><td>Runtime interaction shape</td></tr>
+          <tr><td>Cognee</td><td>Doc &rarr; KG construction</td><td>Runtime interaction shape</td></tr>
+          <tr><td>Memora (Microsoft, 2026)</td><td>Abstraction + cue-anchor representation</td><td>Runtime interaction shape</td></tr>
+          <tr><td><strong>Bourdon</strong></td><td><strong>Runtime interaction shape: recognition &rarr; hydration &rarr; archive descent</strong></td><td>Less mature on representation, no compliance posture, no managed cloud &mdash; by choice</td></tr>
+        </tbody>
+      </table>
+      <p class="note">
+        Bourdon isn&rsquo;t competing with these tools. It complements them.
+        A Bourdon timing layer can sit on top of Mem0&rsquo;s store, Zep&rsquo;s
+        temporal graph, or Letta&rsquo;s memory blocks and make any of them feel
+        more like a mind.
+      </p>
+    </section>
+
+    <section>
+      <h2>How we&rsquo;d know we&rsquo;re wrong</h2>
+      <p>
+        The thesis is falsifiable. Three concrete failure conditions:
+      </p>
+      <ul>
+        <li>
+          <strong>The runtime ships and the agent still feels like lookup.</strong>
+          If Bourdon-equipped agents fail the recognition-first feel test
+          (target: 8/10 subjective on a 5-session run), the architecture is
+          wrong &mdash; not just the implementation.
+        </li>
+        <li>
+          <strong>A competitor reaches the same behavior with a different
+          architecture.</strong> If someone ships recognition-first runtime
+          without an L0/L1 timing-orchestrated split, we adopt their approach
+          and document the loss.
+        </li>
+        <li>
+          <strong>Users can&rsquo;t tell the difference.</strong> If rigorous
+          blind testing shows people genuinely cannot distinguish a
+          recognition-first agent from a retrieve-then-respond agent at
+          comparable retrieval quality, the entire wedge collapses.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Status</h2>
+      <p>
+        Pre-alpha. <strong>v0.4.1</strong>, source-available under
+        <a href="https://github.com/getbourdon/bourdon/blob/main/LICENSE">Business Source License 1.1</a>
+        (auto-converts to Apache 2.0 four years per version), public on GitHub.
+        479 tests passing across orchestrator, adapters, federation server,
+        recognition runtime, and the three runtime layers (Layer A backend-neutral
+        inference protocol, Layer B interrupt-first symmetric primitive, Layer C
+        KV-cache-aware splice). Five shipping IDE adapters &mdash; three live
+        (Claude Code, Codex, Cursor) and two convention-file fallback (GitHub
+        Copilot, Cascade, both requiring per-user init) &mdash; plus native
+        publishers for Clyde and Clair, and a zero-code MCP integration with
+        <a href="https://github.com/getbourdon/bourdon/blob/main/docs/integrations/openmanus.md">OpenManus</a>.
+        v0.4.x ships the Copilot and Cascade adapters (both convention-file
+        fallback for cloud-only agents — both self-authored against the public
+        <a href="https://github.com/getbourdon/bourdon/blob/main/docs/AUTHORING_AN_ADAPTER.md">adapter-authoring guide</a>),
+        plus top-level `bourdon doctor` and `bourdon export-all` cross-adapter
+        CLI surfaces and a project-level
+        <a href="https://github.com/getbourdon/bourdon/blob/main/SECURITY.md">SECURITY.md</a>.
+        The recognition-first runtime is wired into a live agent and measured
+        end-to-end.
+      </p>
+      <p class="note">
+        <strong>Free for solo developers, internal use, research, and
+        non-competing commercial use.</strong> Commercial license required for
+        hosted-service offerings or paid-product embedding that competes with
+        RADLAB LLC's paid versions. See the
+        <a href="https://github.com/getbourdon/bourdon/blob/main/LICENSE_FAQ.md">License FAQ</a>
+        for plain-English guidance, or contact
+        <a href="mailto:licensing@bourdon.ai">licensing@bourdon.ai</a>.
+      </p>
+      <p class="note">
+        Renamed from <em>Continuo</em> to <em>Bourdon</em> on 2026-05-05; relicensed
+        from MIT to BSL 1.1 on 2026-05-06.
+        Versions <em>v0.0.1 &ndash; v0.1.0</em> remain MIT in their distributed form
+        (perpetual rights for downloaders); the relicense applies forward only.
+        See the <a href="https://github.com/getbourdon/bourdon/releases/tag/v0.2.0">v0.2.0
+        release notes</a> for migration. Old URLs auto-redirect.
+      </p>
+      <p class="links">
+        <a href="https://github.com/getbourdon/bourdon">GitHub</a>
+        &middot;
+        <a href="https://github.com/getbourdon/bourdon/blob/main/docs/quickstart.md">Quickstart</a>
+        &middot;
+        <a href="https://github.com/getbourdon/bourdon/blob/main/spec/POSITIONING.md">Positioning</a>
+        &middot;
+        <a href="https://github.com/getbourdon/bourdon/blob/main/spec/THESIS.md">Thesis</a>
+        &middot;
+        <a href="https://github.com/getbourdon/bourdon/blob/main/spec/RELATED_WORK.md">Related work</a>
+        &middot;
+        <a href="https://github.com/getbourdon/bourdon/blob/main/spec/FINDINGS_JOURNAL.md">Findings journal</a>
+      </p>
+    </section>
+
+    <footer>
+      <p>
+        Bourdon is built in public by <a href="https://github.com/getbourdon">RADLAB LLC</a>
+        and the broader open-source community. Designed with Ry Davis. Co-authored
+        with Claude (Anthropic), Codex (OpenAI), and Cursor. Contributors welcome
+        &mdash; especially adapters for new agents and integrations into
+        live response loops.
+      </p>
+      <p class="meta">
+        Named for the <em>bourdon</em> &mdash; the deep continuous drone of a pipe
+        organ, the foundational tone that holds every other voice in place.
+      </p>
+      <p class="meta">Business Source License 1.1 &mdash; auto-converts to Apache 2.0 after 4 years. Commercial licensing: <a href="mailto:licensing@bourdon.ai">licensing@bourdon.ai</a>. <a href="privacy.html">Privacy</a>.</p>
+      <p class="philosophy">No tracking. No JavaScript. No web fonts. Just text.</p>
+    </footer>
+  </main>
+</body>
+</html>
