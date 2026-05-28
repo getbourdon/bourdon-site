@@ -1,0 +1,31 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 18px; background: var(--paper); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card { background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 2px rgba(31,58,82,0.06); }
+  .eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-muted); font-variant-numeric: tabular-nums; margin: 0 0 6px 0; font-family: var(--font-sans); }
+  .title { font-family: var(--font-sans); font-size: 16px; font-weight: 600; color: var(--drone); margin: 0 0 6px 0; letter-spacing: -0.01em; }
+  .body { font-family: var(--font-sans); font-size: 12.5px; line-height: 1.45; color: var(--ink-muted); margin: 0; }
+  .accent { border-left: 3px solid var(--drone); padding-left: 14px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="card">
+      <p class="eyebrow">2026-05-15 · field test</p>
+      <h3 class="title">The cross-account test</h3>
+      <p class="body">Codex correctly recovered the active project on a brand-new account&rsquo;s first turn.</p>
+    </div>
+    <div class="card accent">
+      <p class="eyebrow">v0.7.0</p>
+      <h3 class="title">Codex memory pipeline</h3>
+      <p class="body">First-class CLI surfaces. Rollout chronology + structured apply-patch evidence.</p>
+    </div>
+  </div>
+</body>
+</html>

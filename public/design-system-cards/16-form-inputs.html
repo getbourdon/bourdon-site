@@ -1,0 +1,27 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--paper); display: grid; gap: 12px; max-width: 660px; }
+  .row { display: flex; gap: 12px; align-items: center; }
+  label { font-family: var(--font-sans); font-size: 12px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.14em; min-width: 110px; }
+  input[type=text], select, textarea {
+    flex: 1; font-family: var(--font-sans); font-size: 14px;
+    padding: 9px 12px; border-radius: 8px; border: 1px solid var(--rule);
+    background: var(--paper); color: var(--ink); outline: none;
+    transition: border 180ms cubic-bezier(0.2,0,0,1), box-shadow 180ms cubic-bezier(0.2,0,0,1);
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--drone); box-shadow: 0 0 0 3px rgba(31,58,82,0.12); }
+  textarea { font-family: var(--font-mono); font-size: 13px; resize: none; min-height: 60px; }
+  .help { font-family: var(--font-mono); font-size: 10px; color: var(--ink-faint); margin-left: 110px; margin-top: -8px; }
+</style>
+</head>
+<body>
+  <div class="row"><label>Access level</label><select><option>public</option><option>team</option><option>private</option></select></div>
+  <div class="row"><label>Project</label><input type="text" value="bourdon"></div>
+  <div class="row"><label>Prompt</label><textarea>Can we keep working on Bourdon?</textarea></div>
+</body>
+</html>

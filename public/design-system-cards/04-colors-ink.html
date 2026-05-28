@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--paper-rose); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .sw { display: flex; flex-direction: column; gap: 6px; }
+  .chip { height: 64px; border-radius: 8px; }
+  .meta { font-family: var(--font-mono); font-size: 10px; line-height: 1.35; }
+  .name { color: var(--ink); font-weight: 500; }
+  .hex { color: var(--ink-muted); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:#1a1a1a"></div><div class="meta"><div class="name">--ink</div><div class="hex">#1a1a1a</div></div></div>
+    <div class="sw"><div class="chip" style="background:#534b48"></div><div class="meta"><div class="name">--ink-muted</div><div class="hex">#534b48 · warm rose-gray</div></div></div>
+    <div class="sw"><div class="chip" style="background:#8a7d75"></div><div class="meta"><div class="name">--ink-faint</div><div class="hex">#8a7d75 · dusky</div></div></div>
+    <div class="sw"><div class="chip" style="background:#b8a89e"></div><div class="meta"><div class="name">--rule-strong</div><div class="hex">#b8a89e</div></div></div>
+  </div>
+</body>
+</html>

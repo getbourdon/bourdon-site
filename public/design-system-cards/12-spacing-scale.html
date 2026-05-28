@@ -1,0 +1,28 @@
+<!-- @dsCard group="Spacing" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px; background: var(--paper); }
+  .row { display: flex; flex-direction: column; gap: 8px; }
+  .bar { display: flex; align-items: center; gap: 14px; }
+  .swatch { background: var(--drone); height: 18px; border-radius: 4px; }
+  .meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); min-width: 102px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="bar"><span class="meta">--space-1 · 4</span><span class="swatch" style="width:4px"></span></div>
+    <div class="bar"><span class="meta">--space-2 · 10</span><span class="swatch" style="width:10px"></span></div>
+    <div class="bar"><span class="meta">--space-3 · 14</span><span class="swatch" style="width:14px"></span></div>
+    <div class="bar"><span class="meta">--space-4 · 20</span><span class="swatch" style="width:20px"></span></div>
+    <div class="bar"><span class="meta">--space-6 · 30</span><span class="swatch" style="width:30px"></span></div>
+    <div class="bar"><span class="meta">--space-8 · 40</span><span class="swatch" style="width:40px"></span></div>
+    <div class="bar"><span class="meta">--space-12 · 60</span><span class="swatch" style="width:60px"></span></div>
+    <div class="bar"><span class="meta">--space-16 · 80</span><span class="swatch" style="width:80px"></span></div>
+    <div class="bar"><span class="meta">--space-24 · 120</span><span class="swatch" style="width:120px"></span></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 22px; background: var(--paper); }
+  figure.metric {
+    margin: 0; padding: 12px 16px;
+    background: var(--paper-tinted); border-left: 3px solid var(--drone);
+    border-radius: 0 4px 4px 0; display: flex; align-items: baseline;
+    gap: 20px; max-width: 600px;
+  }
+  .label { flex: 1; color: var(--ink-muted); font-size: 13px; font-family: var(--font-sans); }
+  .label code { font-family: var(--font-mono); font-size: 12px; background: rgba(0,0,0,0.04); padding: 1px 5px; border-radius: 3px; }
+  .value { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 600; color: var(--drone); white-space: nowrap; font-size: 15px; }
+  .delta { color: var(--ink-muted); font-weight: 400; padding: 0 6px; }
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <figure class="metric">
+      <span class="label">First-turn recognition vs. first token</span>
+      <span class="value">0 ms<span class="delta">vs</span>~406 ms</span>
+    </figure>
+    <figure class="metric">
+      <span class="label"><code>bourdon_fallback.md</code> on fresh-substrate target machine</span>
+      <span class="value">588 B<span class="delta">→</span>34,482 B</span>
+    </figure>
+  </div>
+</body>
+</html>

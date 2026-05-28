@@ -1,0 +1,28 @@
+<!-- @dsCard group="Spacing" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 32px 28px; background: var(--paper); }
+  .row { display: flex; gap: 40px; align-items: flex-end; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .card { width: 124px; height: 88px; background: var(--paper); border-radius: 12px; }
+  .rest    { box-shadow: 0 1px 3px rgba(107, 46, 62, 0.14); }
+  .raised  { box-shadow: 0 6px 20px rgba(107, 46, 62, 0.20); }
+  .modal   { box-shadow: 0 16px 48px rgba(107, 46, 62, 0.26); }
+  .inset   { background: var(--paper-tinted); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 4px rgba(107, 46, 62, 0.12); }
+  .meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); text-align: center; line-height: 1.4; }
+  .meta b { color: var(--ink); font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="card rest"></div><div class="meta"><b>--shadow-rest</b><br>cards, dropdowns</div></div>
+    <div class="item"><div class="card raised"></div><div class="meta"><b>--shadow-raised</b><br>popovers</div></div>
+    <div class="item"><div class="card modal"></div><div class="meta"><b>--shadow-modal</b><br>modals</div></div>
+    <div class="item"><div class="card inset"></div><div class="meta"><b>--shadow-inset</b><br>tinted surfaces</div></div>
+  </div>
+</body>
+</html>

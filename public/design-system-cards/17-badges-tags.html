@@ -1,0 +1,35 @@
+<!-- @dsCard group="Components" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 22px; background: var(--paper); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .badge {
+    font-family: var(--font-sans); font-size: 11px; font-weight: 500;
+    padding: 3px 10px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 6px;
+    line-height: 1.4;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 999px; display: inline-block; }
+  .recognized { background: var(--moss-soft); color: var(--moss); }
+  .pending    { background: var(--ochre-soft); color: var(--ochre); }
+  .error      { background: var(--clay-soft); color: var(--clay); }
+  .neutral    { background: var(--paper-tinted); color: var(--ink-muted); border: 1px solid var(--rule); }
+  .drone      { background: var(--drone-soft); color: var(--drone); }
+  .tag        { background: transparent; border: 1px solid var(--rule); color: var(--ink-muted); border-radius: 4px; padding: 2px 8px; font-family: var(--font-mono); font-size: 11px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <span class="badge recognized"><span class="dot" style="background:#4f6b50"></span>recognized</span>
+    <span class="badge pending"><span class="dot" style="background:#a47b3a"></span>hydrating</span>
+    <span class="badge error"><span class="dot" style="background:#a8543a"></span>schema drift</span>
+    <span class="badge neutral"><span class="dot" style="background:#8a7d75"></span>idle</span>
+    <span class="badge drone">v0.7.0 · pre-alpha</span>
+    <span class="tag">L0</span><span class="tag">L1</span><span class="tag">L5</span><span class="tag">claude-code</span>
+  </div>
+</body>
+</html>

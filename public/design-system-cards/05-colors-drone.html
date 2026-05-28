@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px; background: var(--paper); }
+  .lead { font-family: var(--font-display); font-weight: 300; font-style: normal; font-size: 22px; color: var(--drone); margin-bottom: 14px; line-height: 1.1; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .sw { display: flex; flex-direction: column; gap: 6px; }
+  .chip { height: 56px; border-radius: 8px; }
+  .meta { font-family: var(--font-mono); font-size: 10px; line-height: 1.35; }
+  .name { color: var(--ink); font-weight: 500; }
+  .hex { color: var(--ink-muted); }
+</style>
+</head>
+<body>
+  <div class="lead">Drone — the primary brand accent.</div>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:#c17c74"></div><div class="meta"><div class="name">--drone</div><div class="hex">#c17c74 · dusty rose</div></div></div>
+    <div class="sw"><div class="chip" style="background:#8e5a55"></div><div class="meta"><div class="name">--drone-deep</div><div class="hex">#8e5a55 · pressed/focus</div></div></div>
+    <div class="sw"><div class="chip" style="background:#f0d8d3"></div><div class="meta"><div class="name">--drone-soft</div><div class="hex">#f0d8d3 · blush tint</div></div></div>
+  </div>
+</body>
+</html>

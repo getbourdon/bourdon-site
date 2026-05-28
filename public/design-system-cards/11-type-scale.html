@@ -1,0 +1,30 @@
+<!-- @dsCard group="Type" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 20px 24px; background: var(--paper); }
+  .row { display: grid; grid-template-columns: 130px 1fr; align-items: baseline; gap: 18px; padding: 6px 0; border-bottom: 1px dashed var(--rule); }
+  .tok { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); }
+  .specimen { color: var(--ink); }
+  .xs    { font-size: 13px; }
+  .sm    { font-size: 15px; }
+  .base  { font-size: 17px; }
+  .md    { font-size: 20px; }
+  .lg    { font-size: 24px; }
+  .xl    { font-size: 30px; line-height: 1.2; }
+  .twoxl { font-size: 41px; line-height: 1.15; letter-spacing: -0.01em; color: var(--drone); }
+</style>
+</head>
+<body>
+  <div class="row"><span class="tok">--fs-xs · 13</span><span class="specimen xs">Eyebrows, captions, table cells</span></div>
+  <div class="row"><span class="tok">--fs-sm · 15</span><span class="specimen sm">Secondary copy, footnotes</span></div>
+  <div class="row"><span class="tok">--fs-base · 17</span><span class="specimen base">Body — running text</span></div>
+  <div class="row"><span class="tok">--fs-md · 20</span><span class="specimen md">Emphasized body, tagline</span></div>
+  <div class="row"><span class="tok">--fs-lg · 24</span><span class="specimen lg">Section sub-heading</span></div>
+  <div class="row"><span class="tok">--fs-xl · 30</span><span class="specimen xl">Page heading</span></div>
+  <div class="row"><span class="tok">--fs-2xl · 41</span><span class="specimen twoxl">Section opener</span></div>
+</body>
+</html>
