@@ -8,9 +8,9 @@ export function SiteNav() {
         <span className="nav-wordmark">bourdon</span>
       </a>
       <div className="nav-links">
-        <a href="/#thesis">Thesis</a>
+        <a href="/thesis">Thesis</a>
         <a href="/stack">Stack</a>
-        <a href="/#evidence">Evidence</a>
+        <a href="/field-tests">Field tests</a>
         <a href="/blog">Blog</a>
         <a
           href="https://github.com/getbourdon/bourdon"
