@@ -1,8 +1,8 @@
 # bourdon-site
 
-Marketing site for [bourdon](https://bourdon.ai) — cross-agent memory federation.
+Marketing site for [bourdon](https://bourdon.ai) — recognition-first AI memory runtime.
 
-Next.js 16 (App Router) + Tailwind 4 + Geist, statically exported and deployed to **Cloudflare Pages**.
+Next.js 16 (App Router) + Geist (via `next/font`) + the Bourdon design tokens, statically exported and deployed to **Cloudflare Pages**.
 
 ## Local development
 
